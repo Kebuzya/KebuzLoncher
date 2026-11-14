@@ -23,17 +23,11 @@
       "name": "Lethal Company",
       "description": "The company needs you",
       "image_url": "https://cdn.akamai.steamstatic.com/steam/apps/1966720/header.jpg",
-      "mod_pack_version": "2026.05.04.1",
-      "mod_pack_url": "https://github.com/BeZZuBiK-006/KebuzLoncher/releases/download/letcomp-latest/letcomp_full.zip",
+      "mod_pack_version": "2026.11.14.1",
+      "mod_pack_url": "https://github.com/Kebuzya/KebuzLoncher/releases/download/letcomp-latest/letcomp_full.zip",
       "steam_app_id": 1966720,
       "executable": "Lethal Company.exe",
-      "patches": [
-        {
-          "from": "2026.04.13.1",
-          "to": "2026.05.04.1",
-          "url": "https://github.com/BeZZuBiK-006/KebuzLoncher/releases/download/letcomp-latest/letcomp_patch_2026.04.13.1_2026.05.04.1.zip"
-        }
-      ],
+      "patches": [],
       "mods": []
     },
     {
