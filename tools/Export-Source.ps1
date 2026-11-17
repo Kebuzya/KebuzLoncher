@@ -11,6 +11,7 @@ $relativeFiles = @(
     'config.example.json', 'manifest.example.json', 'RELEASING.md', 'KebuzLoncher.csproj', 'packages.config',
     'App.config', 'app.manifest', 'KebuzLoncher.ico', 'FodyWeavers.xml', 'FodyWeavers.xsd', 'Form1.resx'
     'docs/DEVELOPMENT.md', 'docs/images/dark-theme.png'
+    '.github/workflows/build.yml', '.github/workflows/release.yml'
 )
 $relativeFiles += Get-ChildItem -LiteralPath $projectRoot -Filter '*.cs' -File | ForEach-Object { $_.Name }
 foreach ($folder in @('Properties', 'licenses', 'tools', 'tests')) {

@@ -39,6 +39,22 @@ the public source repository.
 The local `manifest.example.json` is prepared for version 1.2.0. Its release URL is a
 deployment target, not confirmation that the release already exists.
 
+## Automated builds and launcher releases
+
+`.github/workflows/build.yml` builds and verifies the launcher on Windows 2022
+for main branch pushes, pull requests and manual dispatch. Its artifact contains
+only the EXE. Desktop and Aero regression checks remain local.
+
+For a new launcher release, update `LauncherVersion.Number`, commit and push
+the change, then push a matching tag such as `launcher-v1.2.1`. The release
+workflow verifies the tag against the EXE, checks packaging, uploads a draft
+asset and verifies its digest before publication. Only after a verified public
+download does it update `catalog/manifest.json`. It never accesses `config.json`.
+The workflow uses `GITHUB_TOKEN` with contents write permission; do not add
+Publisher credentials to Actions secrets. Modpack tags do not trigger it.
+Reruns preserve matching published assets and reject different contents or
+attempts to replace a newer launcher manifest.
+
 ## Runtime behavior
 
 The launcher reads the game catalog and the launcher manifest independently.

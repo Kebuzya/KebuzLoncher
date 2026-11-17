@@ -1,0 +1,43 @@
+name: Release launcher
+
+on:
+  push:
+    tags: ['launcher-v*']
+
+permissions:
+  contents: write
+
+concurrency:
+  group: launcher-release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: windows-2022
+    timeout-minutes: 20
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - name: Check out tagged source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Set up MSBuild
+        uses: microsoft/setup-msbuild@30375c66a4eea26614e0d39710365f22f8b0af57
+        with:
+          vs-version: '[17.0,18.0)'
+          msbuild-architecture: x64
+      - name: Restore dependencies
+        run: nuget restore packages.config -PackagesDirectory ../packages -NonInteractive
+      - name: Build Release
+        run: msbuild KebuzLoncher.csproj /t:Rebuild /p:Configuration=Release /p:ContinuousIntegrationBuild=true /nologo /v:minimal
+      - name: Verify single EXE package
+        run: ./tools/Test-Package.ps1 -ExecutablePath ./bin/Release/KebuzLoncher.exe
+      - name: Verify release publishing
+        run: ./tests/ReleaseChecks.ps1 -ExecutablePath ./bin/Release/KebuzLoncher.exe
+      - name: Publish release and update launcher manifest
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: ./tools/Publish-Launcher.ps1 -Tag $env:RELEASE_TAG -Repository $env:GITHUB_REPOSITORY -ExecutablePath ./bin/Release/KebuzLoncher.exe
