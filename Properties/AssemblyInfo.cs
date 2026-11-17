@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Kebuz Game Launcher")]
 [assembly: AssemblyDescription("Official Game Mod Manager")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Kebuz")]
+[assembly: AssemblyCompany("Kebuzya")]
 [assembly: AssemblyProduct("Kebuz Game Launcher")]
-[assembly: AssemblyCopyright("Copyright © Kebuz 2025")]
+[assembly: AssemblyCopyright("Copyright (c) 2025-2026 Kebuzya")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -150,7 +150,33 @@ internal static class LauncherChecks
             "The single EXE must embed launcher and dependency license notices");
         foreach (string theme in new[] { "Classic", "Dark" })
         using (var dialog = (Form)legal.GetMethod("Create").Invoke(null, new object[] { theme }))
-            Check(dialog.Controls.OfType<TextBox>().Single().Text == text && dialog.CancelButton != null, "Embedded licenses must be accessible in both themes without external files");
+        {
+            dialog.Opacity = 0;
+            dialog.ShowInTaskbar = false;
+            dialog.Show();
+            Application.DoEvents();
+            var reader = (RichTextBox)dialog.Controls.Find("legalText", true).Single();
+            var documents = (ListBox)dialog.Controls.Find("legalDocuments", true).Single();
+            Check(dialog.Icon != null && dialog.CancelButton != null && documents.Items.Count == 5, "The license window must show the application icon and all embedded documents");
+            Check(reader.Lines.Length > 15 && reader.Text.Contains("Copyright (c) 2025-2026 Kebuzya"), "Launcher license paragraphs and copyright must remain readable");
+            Check(!text.Replace("\r\n", "").Contains("\n"), "Embedded document line endings must be normalized for WinForms");
+            reader.Select(0, 3);
+            Check(reader.SelectionFont.Bold && reader.ForeColor != reader.BackColor, "Document headings and text must be readable in both themes");
+            CaptureWindow(dialog, "license-launcher-" + theme.ToLowerInvariant() + ".png");
+            for (int index = 1; index < 4; index++)
+            {
+                documents.SelectedIndex = index;
+                Check(reader.Lines.Length > 10 && reader.Text.Contains("Permission is hereby granted"), "Each dependency license must preserve its original grant and paragraphs");
+            }
+            documents.SelectedIndex = 4;
+            Check(reader.Text.Contains("Newtonsoft.Json") && !reader.Text.Contains("| ---") && !reader.Text.Contains("# "), "Third-party notices must display headings and component rows without raw Markdown syntax");
+            CaptureWindow(dialog, "licenses-" + theme.ToLowerInvariant() + ".png");
+            dialog.WindowState = FormWindowState.Maximized;
+            Application.DoEvents();
+            Check(reader.ClientSize.Width > 300 && reader.RightMargin <= 840, "Maximized license paragraphs must retain a readable line width");
+            dialog.WindowState = FormWindowState.Normal;
+            dialog.Close();
+        }
     }
 
     private static async Task CheckFeeds()

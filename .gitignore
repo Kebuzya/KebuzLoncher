@@ -23,5 +23,3 @@ token.txt
 *.local.json
 test_config.json
 *.zip
-# Provenance has not been established; source export omits this local asset.
-Smile.ico

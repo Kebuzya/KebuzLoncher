@@ -144,4 +144,7 @@
   <data name="StartupFailed" xml:space="preserve"><value>Could not start the launcher. Your previous data has been preserved. Details: {0}</value></data>
   <data name="StartupErrorTitle" xml:space="preserve"><value>Launcher startup error</value></data>
   <data name="UnexpectedError" xml:space="preserve"><value>An unexpected error occurred. Details: {0}</value></data>
+  <data name="LauncherLicenseTitle" xml:space="preserve"><value>Launcher license</value></data>
+  <data name="ThirdPartyNoticesTitle" xml:space="preserve"><value>Third-party notices</value></data>
+  <data name="LicenseDocuments" xml:space="preserve"><value>License documents</value></data>
 </root>
