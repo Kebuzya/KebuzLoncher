@@ -1,46 +1,4 @@
 {
   "launcher_version": "1.1.0.0",
-  "launcher_download_url": "https://github.com/Kebuzya/KebuzLoncher/releases/latest",
-  "games": [
-    {
-      "id": "repa",
-      "name": "R.E.P.O.",
-      "description": "😂",
-      "image_url": "https://cdn.akamai.steamstatic.com/steam/apps/3241660/header.jpg",
-      "steam_app_id": 3241660,
-      "executable": "REPO.exe",
-      "mod_pack_version": "2025.11.15.1",
-      "mod_pack_url": "https://github.com/BeZZuBiK-006/KebuzLoncher/releases/download/v1.0.0/repo_Mods.zip"
-    },
-    {
-      "id": "lethal",
-      "name": "Lethal Company",
-      "description": "The company needs you",
-      "image_url": "https://cdn.akamai.steamstatic.com/steam/apps/1966720/header.jpg",
-      "steam_app_id": 1966720,
-      "executable": "Lethal Company.exe",
-      "mod_pack_version": "2026.04.13.1",
-      "mod_pack_url": "https://github.com/BeZZuBiK-006/KebuzLoncher/releases/download/LC_V1.0/Mods.zip"
-    },
-    {
-      "id": "peak",
-      "name": "PEAK",
-      "description": "Reach the peak!",
-      "image_url": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3527290/bd3771d9a3827610b2742de13d8552918008c302/header_alt_assets_2.jpg?t=1762370967",
-      "steam_app_id": 3527290,
-      "executable": "PEAK.exe",
-      "mod_pack_version": "2026.04.23.1",
-      "mod_pack_url": "https://github.com/BeZZuBiK-006/KebuzLoncher/releases/download/PEAK_Modes/Peak_Modes.zip"
-    },
-    {
-      "id": "conwar",
-      "name": "Content Warning",
-      "description": "Simulator of fierce fearlessness",
-      "image_url": "https://cdn.akamai.steamstatic.com/steam/apps/2881650/header.jpg",
-      "steam_app_id": 2881650,
-      "executable": "Content Warning.exe",
-      "mod_pack_version": "2025.11.17.1",
-      "mod_pack_url": "https://github.com/BeZZuBiK-006/KebuzLoncher/releases/download/CW-0.1/ContentWarning_Mods.zip"
-    }
-  ]
+  "launcher_download_url": "https://github.com/Kebuzya/KebuzLoncher/releases/latest"
 }
