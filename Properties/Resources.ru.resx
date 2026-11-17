@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="DownloadUpdate" xml:space="preserve">
+    <value>Скачать</value>
+  </data>
+  <data name="LauncherUpdateAvailable" xml:space="preserve">
+    <value>Доступна новая версия лаунчера: {0}</value>
+  </data>
+  <data name="OpenUpdateFailed" xml:space="preserve">
+    <value>Не удалось открыть страницу обновления: {0}</value>
+  </data>
+  <data name="GameListScrollBar" xml:space="preserve">
+    <value>Прокрутка списка игр</value>
+  </data>
+  <data name="PatchChainBroken" xml:space="preserve"><value>Цепочка патчей неполная. Нужно опубликовать актуальный полный модпак.</value></data>
+  <data name="PatchManifestInvalid" xml:space="preserve"><value>В патче отсутствует корректный манифест.</value></data>
+  <data name="PatchVersionMismatch" xml:space="preserve"><value>Версии патча не совпадают с записью в каталоге.</value></data>
+  <data name="PatchChecksumMismatch" xml:space="preserve"><value>Файл патча отсутствует или его контрольная сумма неверна: {0}</value></data>
+  <data name="PatchPathInvalid" xml:space="preserve"><value>В патче указан путь вне папки игры: {0}</value></data>
+  <data name="FullArchiveMissing" xml:space="preserve"><value>Для игры не указан полный архив модпака.</value></data>
+  <data name="ModpackUnverifiedTitle" xml:space="preserve"><value>Совместимость не проверена</value></data>
+  <data name="ModpackOutdatedTitle" xml:space="preserve"><value>Сборка может быть неактуальна</value></data>
+  <data name="ModpackBrokenTitle" xml:space="preserve"><value>Известны проблемы со сборкой</value></data>
+  <data name="ModpackUnverifiedMessage" xml:space="preserve"><value>Работоспособность сборки с текущей версией игры не проверена.</value></data>
+  <data name="ModpackOutdatedMessage" xml:space="preserve"><value>Сборка могла устареть и работать некорректно с текущей версией игры.</value></data>
+  <data name="ModpackBrokenMessage" xml:space="preserve"><value>В этой сборке известны проблемы с работой.</value></data>
+  <data name="LegalNoticesTitle" xml:space="preserve"><value>Лицензии</value></data>
+  <data name="CloseLegalNotices" xml:space="preserve"><value>Закрыть</value></data>
+  <data name="MigrationLinkUnsupported" xml:space="preserve"><value>В прежней папке данных найдена символическая ссылка. Перенос остановлен для сохранности данных.</value></data>
+  <data name="StartupFailed" xml:space="preserve"><value>Не удалось запустить лаунчер. Прежние данные сохранены. Подробности: {0}</value></data>
+  <data name="StartupErrorTitle" xml:space="preserve"><value>Ошибка запуска лаунчера</value></data>
+  <data name="UnexpectedError" xml:space="preserve"><value>Произошла непредвиденная ошибка. Подробности: {0}</value></data>
+</root>

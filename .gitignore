@@ -1,0 +1,27 @@
+bin/
+obj/
+packages/
+.vs/
+.artifacts/
+AGENTS*.md
+SKILL.md
+CLAUDE.md
+GEMINI.md
+.agents/
+.codex/
+.claude/
+.cursor/
+.cursorrules
+publish/
+*.user
+*.suo
+*.pfx
+*.p12
+*.snk
+token.txt
+.env
+*.local.json
+test_config.json
+*.zip
+# Provenance has not been established; source export omits this local asset.
+Smile.ico

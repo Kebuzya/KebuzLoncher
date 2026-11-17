@@ -1,0 +1,16 @@
+{
+  "games": [
+    {
+      "id": "example",
+      "name": "Пример игры",
+      "description": "Замените данными своего каталога",
+      "image_url": null,
+      "mod_pack_version": "1.0.0",
+      "mod_pack_url": null,
+      "steam_app_id": 0,
+      "executable": null,
+      "patches": [],
+      "mods": []
+    }
+  ]
+}
