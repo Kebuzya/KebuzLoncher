@@ -31,7 +31,7 @@ jobs:
       - name: Restore dependencies
         run: nuget restore packages.config -PackagesDirectory ../packages -NonInteractive
       - name: Build Release
-        run: msbuild KebuzLoncher.csproj /t:Rebuild /p:Configuration=Release /p:ContinuousIntegrationBuild=true /nologo /v:minimal
+        run: msbuild KebuzLoncher.csproj /t:Rebuild /p:Configuration=Release /nologo /v:minimal
       - name: Verify single EXE package
         run: ./tools/Test-Package.ps1 -ExecutablePath ./bin/Release/KebuzLoncher.exe
       - name: Verify release publishing
