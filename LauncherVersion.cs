@@ -5,7 +5,7 @@ namespace KebuzLoncher
 {
     internal static class LauncherVersion
     {
-        public const string Number = "1.2.0";
+        public const string Number = "1.2.1";
         public static Version Current => Normalize(Assembly.GetExecutingAssembly().GetName().Version);
         public static string Display => Current.Revision == 0 ? Current.ToString(3) : Current.ToString(4);
 
