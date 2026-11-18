@@ -55,7 +55,7 @@ function Invoke-RestMethod {
     }
     if ($Method -eq 'POST' -and $path.EndsWith('/releases/123/assets')) {
         if (-not $state.Release.draft -or (Get-FileHash -LiteralPath $InFile -Algorithm SHA256).Hash.ToLowerInvariant() -ne $checksum) { throw 'Invalid EXE upload.' }
-        $asset = [pscustomobject]@{ id = 456; name = 'KebuzLoncher.exe'; state = 'uploaded'; digest = "sha256:$checksum"; browser_download_url = "https://github.com/owner/repo/releases/download/$tag/KebuzLoncher.exe" }
+        $asset = [pscustomobject]@{ id = 456; name = 'KebuzLoncher.exe'; state = 'uploaded'; digest = "sha256:$checksum"; browser_download_url = 'https://github.com/owner/repo/releases/download/untagged-fixture/KebuzLoncher.exe' }
         $state.Release.assets = @($asset)
         return $asset
     }
@@ -63,6 +63,12 @@ function Invoke-RestMethod {
         if (-not $state.Release.draft) { throw 'Published assets must never be deleted.' }
         $state.Release.assets = @()
         return
+    }
+    if ($Method -eq 'GET' -and $path.EndsWith('/releases/assets/456')) {
+        if ($state.Release.draft) { throw 'Asset metadata must be refreshed after publication.' }
+        $asset = $state.Release.assets[0] | Select-Object *
+        $asset.browser_download_url = "https://github.com/owner/repo/releases/download/$tag/KebuzLoncher.exe"
+        return $asset
     }
     if ($Method -eq 'PATCH' -and $path.EndsWith('/releases/123')) {
         if ($payload.draft -or $payload.make_latest -ne 'true') { throw 'The verified launcher must become a public Latest release.' }
@@ -85,6 +91,7 @@ function Invoke-WebRequest {
     $state = $global:LauncherReleaseFixture
     $state.Calls.Add('DOWNLOAD')
     if ($state.Release.draft) { throw 'Public verification must follow publication.' }
+    if ($Uri -ne "https://github.com/owner/repo/releases/download/$tag/KebuzLoncher.exe") { throw 'Public verification must use refreshed asset metadata instead of the temporary draft URL.' }
     if ($state.CorruptDownload) { [IO.File]::WriteAllText($OutFile, 'corrupted') }
     else { Copy-Item -LiteralPath $executable -Destination $OutFile }
 }
@@ -111,6 +118,7 @@ try {
     $state = $global:LauncherReleaseFixture
     Assert-Check ($state.Manifest.launcher_version -eq $version -and $state.Manifest.keep -eq 'preserved') 'Publication must update the version and preserve unknown manifest fields.'
     Assert-Check ($state.Calls.IndexOf('DOWNLOAD') -lt $state.Calls.IndexOf('PUT /repos/owner/repo/contents/manifest.json')) 'The manifest must be updated only after public download verification.'
+    Assert-Check ($state.Calls.IndexOf('GET /repos/owner/repo/releases/assets/456') -gt $state.Calls.IndexOf('PATCH /repos/owner/repo/releases/123') -and $state.Calls.IndexOf('GET /repos/owner/repo/releases/assets/456') -lt $state.Calls.IndexOf('DOWNLOAD')) 'The published download URL must be refreshed after the draft becomes public.'
     Assert-Check (-not $state.Release.draft -and $state.Release.assets.Count -eq 1) 'A published launcher must contain exactly its EXE.'
     $state.Calls.Clear()
     & $publishScript @arguments | Out-Null

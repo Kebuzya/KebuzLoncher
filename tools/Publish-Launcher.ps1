@@ -54,6 +54,8 @@ if ($null -eq $asset) {
 }
 if ($asset.digest -ne "sha256:$checksum") { throw 'The uploaded asset checksum does not match the EXE.' }
 if ($release.draft) { $release = Invoke-GitHub PATCH "/releases/$($release.id)" @{ draft = $false; make_latest = 'true' } }
+$asset = Invoke-GitHub GET "/releases/assets/$($asset.id)" $null
+if ($asset.name -ne 'KebuzLoncher.exe' -or $asset.state -ne 'uploaded' -or $asset.digest -ne "sha256:$checksum") { throw 'The published asset no longer matches the verified EXE.' }
 $temporary = Join-Path ([IO.Path]::GetTempPath()) ('KebuzLoncher-download-' + [Guid]::NewGuid().ToString('N') + '.exe')
 try {
     if (([uri]$asset.browser_download_url).Scheme -ne 'https') { throw 'The public asset must use HTTPS.' }
